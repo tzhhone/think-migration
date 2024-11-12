@@ -87,7 +87,11 @@ class Table extends \Phinx\Db\Table
     {
         $this->addColumn(Column::unsignedInteger("{$name}_id"));
         $this->addColumn(Column::string("{$name}_type"));
-        $this->addIndex(["{$name}_id", "{$name}_type"], ['name' => $indexName]);
+        $options = [];
+        if ($indexName) {
+            $options['name'] = $indexName;
+        }
+        $this->addIndex(["{$name}_id", "{$name}_type"], $options);
         return $this;
     }
 
@@ -95,7 +99,11 @@ class Table extends \Phinx\Db\Table
     {
         $this->addColumn(Column::unsignedInteger("{$name}_id")->setNullable());
         $this->addColumn(Column::string("{$name}_type")->setNullable());
-        $this->addIndex(["{$name}_id", "{$name}_type"], ['name' => $indexName]);
+        $options = [];
+        if ($indexName) {
+            $options['name'] = $indexName;
+        }
+        $this->addIndex(["{$name}_id", "{$name}_type"], $options);
         return $this;
     }
 
