@@ -793,13 +793,9 @@ class Column
             }
 
             $method = 'set' . ucfirst($option);
-
-            if (ucfirst($option) == 'Limit') {
-                if ($value) {
-                    $value = (int)$value;
-                }
+            if ($method == 'setLimit') {
+                $value = (int)$value;
             }
-
             $this->$method($value);
         }
 
